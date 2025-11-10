@@ -1,0 +1,7 @@
+C:\Users\user\source\repos\parallel integral calculator\parallel integral calculator\bin\Debug\parallel integral calculator.exe.config
+C:\Users\user\source\repos\parallel integral calculator\parallel integral calculator\bin\Debug\parallel integral calculator.exe
+C:\Users\user\source\repos\parallel integral calculator\parallel integral calculator\bin\Debug\parallel integral calculator.pdb
+C:\Users\user\source\repos\parallel integral calculator\parallel integral calculator\obj\Debug\parallel integral calculator.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\parallel integral calculator\parallel integral calculator\obj\Debug\parallel integral calculator.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\parallel integral calculator\parallel integral calculator\obj\Debug\parallel integral calculator.exe
+C:\Users\user\source\repos\parallel integral calculator\parallel integral calculator\obj\Debug\parallel integral calculator.pdb
