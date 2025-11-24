@@ -29,16 +29,23 @@ namespace parallel_integral_calculator
 
             ICalculator calculator = calculatorFactory.CreateCalculator(function);
 
-            var workers = new List<IntegralWorker>();
+            var workers = new List<Iworker>();
+            Console.WriteLine("Which worker do you want to use\n1.BackgroundWorker\n2.TaskParallelLibrary");
+            Console.Write("Enter choice:(BackgroundWorker is chosen by default) ");
+            var input = Console.ReadLine();
             foreach (var range in ranges)
             {
-                var worker = workerFactory.CreateWorker(calculator, function, steps, range);
+                var worker = workerFactory.CreateWorker(calculator, function, steps, range, input);
                 workers.Add(worker);
                 worker.Start();
             }
 
-            Console.WriteLine("Press any key to exit...");
+            Console.WriteLine("Press any key to cancel");
             Console.ReadKey();
+            foreach (var worker in workers)
+            {
+                worker.Cancel();
+            }
         }
     }
 }

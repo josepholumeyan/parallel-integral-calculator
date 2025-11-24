@@ -60,12 +60,14 @@
     <Compile Include="Interfaces\IRangeFactory.cs" />
     <Compile Include="Interfaces\IStep.cs" />
     <Compile Include="Interfaces\IStepsFactory.cs" />
+    <Compile Include="Interfaces\Iworker.cs" />
     <Compile Include="Interfaces\IWorkerFactory.cs" />
     <Compile Include="Models\Range.cs" />
     <Compile Include="Models\steps.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Workers\IntegralWorker.cs" />
+    <Compile Include="Workers\BackgroundWorker.cs" />
+    <Compile Include="Workers\TPLWorker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -4,43 +4,48 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace parallel_integral_calculator.Workers
 {
-    internal class IntegralWorker
+    internal class BackgroundWorker : Iworker
     {
-        private BackgroundWorker _worker;
+        private System.ComponentModel.BackgroundWorker _worker;
         private ICalculator _calculator;
         private IFunction _function;
         private IRange _range;
         private IStep _steps;
-        public IRange Range
-        {
-            get { return _range; }
-        }
+        //public IRange Range
+        //{
+        //    get { return _range; }
+        //}
+
 
         public double Result { get; private set; }
 
-        public IntegralWorker(ICalculator calculator, IFunction function, IStep steps, IRange range)
+        public BackgroundWorker(ICalculator calculator, IFunction function, IStep steps, IRange range)
         {
             _calculator = calculator;
             _function = function;
             _steps = steps;
             _range = range;
 
-            _worker = new BackgroundWorker();
+            _worker = new System.ComponentModel.BackgroundWorker();
             _worker.WorkerReportsProgress = true;
             _worker.WorkerSupportsCancellation = true;
 
             _worker.DoWork += DoWorkHandler;
             _worker.ProgressChanged += ProgressChangedHandler;
             _worker.RunWorkerCompleted += RunWorkerCompletedHandler;
+
         }
 
         private void DoWorkHandler(object sender, DoWorkEventArgs e)
         {
-            Result = _calculator.Calculate(_function, _range, _steps, ReportProgressFromCalculator);
+            CancellationTokenSource cts = new CancellationTokenSource();
+            CancellationToken token = cts.Token;
+            Result = _calculator.Calculate(_function, _range, _steps, token, ReportProgressFromCalculator);
             e.Result = Result;
 
             if (_worker.CancellationPending)

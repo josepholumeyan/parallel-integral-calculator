@@ -10,8 +10,8 @@ namespace parallel_integral_calculator.Interfaces
 {
     internal interface IWorkerFactory
     {
-        IntegralWorker CreateWorker(
-            ICalculator calculator, IFunction function, IStep steps, IRange range
+        Iworker CreateWorker(
+            ICalculator calculator, IFunction function, IStep steps, IRange range, String input
             );
 
     }

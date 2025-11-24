@@ -9,13 +9,27 @@ using System.Threading.Tasks;
 
 namespace parallel_integral_calculator.Factories
 {
-    internal class WorkerFactory:IWorkerFactory
-    {       
-        public IntegralWorker CreateWorker(ICalculator calculator, IFunction function, IStep steps,IRange range)
+    internal class WorkerFactory : IWorkerFactory
+    {
+        public Iworker CreateWorker(ICalculator calculator, IFunction function, IStep steps, IRange range, String input)
+        {
+            switch (input)
             {
-                var worker = new IntegralWorker(calculator, function,steps,range);
-                return worker;
+                case "1":
+                    {
+                        return new BackgroundWorker(calculator, function, steps, range);
+                    }
+                case "2":
+                    {
+                        return new TPLWorker(calculator, function, steps, range);
+                    }
+                default:
+                    {
+                        Console.WriteLine("Invalid choice. Please enter 1 or 2.");
+                        Console.Write("Enter choice: ");
+                        return new BackgroundWorker(calculator, function, steps, range);
+                    }
             }
-        
+        }
     }
 }
